@@ -1,33 +1,32 @@
 
-senha = str(input())
-out = 0
-if len(senha) == 0:
-    print(6)
-elif len(senha) == 1:
-    print(5)
-elif len(senha) == 2:
-    print(4)
-elif len(senha) == 3:
-    print(3)
-elif len(senha) > 3:
-    faltam = 4
-    novasenha = senha
-    if any(chr.isdigit() for chr in senha):
-        novasenha = ''.join([i for i in novasenha if not i.isdigit()])
-        faltam = faltam - 1
-    if any(chr.isupper() for chr in senha):
-        novasenha = ''.join([i for i in novasenha if not i.isupper()])
-        faltam = faltam - 1
-    if any(chr.islower() for chr in senha):
-        novasenha = ''.join([i for i in novasenha if not i.islower()])
-        faltam = faltam - 1
-    if len(novasenha) > 0:
-        faltam = faltam - 1
-    if faltam + len(senha) >= 6:
-        print(faltam)
-    elif len(senha) == 4:
-        print(2)
-    else:
-        print(1)
+def secure_password(password):
+    if len(password) == 0:
+        return(6)
+    elif len(password) == 1:
+        return(5)
+    elif len(password) == 2:
+        return(4)
+    elif len(password) == 3:
+        return(3)
+    elif len(password) > 3:
+        condit_remaining = 4
+        new_password = password
+        if any(chr.isdigit() for chr in password):
+            new_password = ''.join([i for i in new_password if not i.isdigit()])
+            condit_remaining = condit_remaining - 1
+        if any(chr.isupper() for chr in password):
+            new_password = ''.join([i for i in new_password if not i.isupper()])
+            condit_remaining = condit_remaining - 1
+        if any(chr.islower() for chr in password):
+            new_password = ''.join([i for i in new_password if not i.islower()])
+            condit_remaining = condit_remaining - 1
+        if len(new_password) > 0:
+            condit_remaining = condit_remaining - 1
+        if condit_remaining + len(password) >= 6:
+            return(condit_remaining)
+        elif len(password) == 4:
+            return(2)
+        else:
+            return(1)
 
-    
+print(secure_password(str(input())))
